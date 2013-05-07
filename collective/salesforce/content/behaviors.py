@@ -1,6 +1,11 @@
 from Acquisition import aq_base, aq_inner
 from zope.app.content import queryContentType
-from zope.app.component.hooks import getSite
+try:
+    # Plone < 4.3
+    from zope.app.component.hooks import setSite
+except ImportError:
+    # Plone >= 4.3
+    from zope.component.hooks import setSite
 from zope.app.container.interfaces import INameChooser
 from zope.component import adapts
 from zope.interface import implements
